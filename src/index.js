@@ -7,11 +7,11 @@ import createLogger                     from 'redux-logger';
 import { Provider }                     from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
-import App             from './App';
+import App             from './components/App';
 import mainReducer     from './reducers';
 import { hydrate }     from './actions';
 
-import './index.css';
+import './styles/index.css';
 
 /*
  * Setup Middleware
