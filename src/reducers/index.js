@@ -1,9 +1,11 @@
 import { combineReducers }         from 'redux';
 import { requestTimestampReducer } from './request_timestamp';
+import { setDataReducer } from './set_data';
 
 
 const defaultReducer = combineReducers({
-  requestTimestamp: requestTimestampReducer
+  requestTimestamp: requestTimestampReducer,
+  data:             setDataReducer
 });
 
 

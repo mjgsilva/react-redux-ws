@@ -15,4 +15,3 @@ export function setRequestTimestamp(timestamp) {
     timestamp
   };
 }
-

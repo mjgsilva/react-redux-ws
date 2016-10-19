@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import request              from 'superagent';
+
+// Redux
+import { connect } from 'react-redux';
+
+import { fetchData } from '../reducers/set_data';
 
 // React Components
 import Film from './Film';
@@ -39,8 +43,8 @@ class App extends Component {
   }
 
   renderGrid = () => {
-    const { photos } = this.state;
-    const grid = photos.length ? photos : films;
+    const { data } = this.props;
+    const grid = data.length ? data : films;
     return grid.map((film) => {
       return <Film {...film} key={film.id} />
     });
@@ -49,14 +53,10 @@ class App extends Component {
 
   fetchData = () => {
     const url = 'http://instagram-ws.herokuapp.com/films';
-    request
-      .get(url)
-      .end((err, res) => {
-        if (!err) {
-          const photosArr = JSON.parse(res.text);
-          this.setPhotos(photosArr.reverse());
-        }
-      });
+
+    this.props.dispatch(
+      fetchData(url)
+    );
   }
 
 
@@ -74,4 +74,9 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(({ requestTimestamp, data }) => {
+  return {
+    requestTimestamp,
+    data
+  };
+})(App);
